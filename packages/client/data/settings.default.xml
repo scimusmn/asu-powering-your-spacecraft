@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <config>
-
+    <activeLanguages>
+        <language key="en" label="English" order="1" />
+        <language key="es" label="Español" order="2" />
+        <!-- <language key="fr" label="French" order="3" /> -->
+    </activeLanguages>
     <settings>
 
         <!-- On-screen duration of full orbit animation -->

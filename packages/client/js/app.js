@@ -51,7 +51,7 @@ require(
       }
     });
     function loadLanguage() {
-      // Load English and Spanish copy
+      // Load copy for all languages
       $.ajax({
         type: 'GET',
         url: 'data/copy.xml',
