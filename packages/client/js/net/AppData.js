@@ -15,10 +15,12 @@ define([], function() {
   AppData.updateSettings = function (configXML) {
     this.configXML = configXML;
 
+    // Active languages from XML
+    this.activeLanguages = this.getActiveLanguages();
+
     // Settings from XML
-    // TODO-TN: Remove any settings that no longer are being used in code
-    this.secondaryLanguage = this.getSetting('secondaryLanguage');
-    if (!this.secondaryLanguage) this.secondaryLanguage = 'es';
+    // this.secondaryLanguage = this.getSetting('secondaryLanguage');
+    // if (!this.secondaryLanguage) this.secondaryLanguage = 'es';
     this.developerMode = this.getBool('developerMode');
     this.orbitDuration = this.getInt('orbitDuration');
     this.o2FillRate = this.getFloat('o2FillRate');
@@ -29,8 +31,6 @@ define([], function() {
     this.circulationUpdateRate = this.getFloat('circulationUpdateRate');
     this.invertedSwitches = this.getBool('invertedSwitches');
     this.invertedLanguageSwitches = this.getBool('invertedLanguageSwitches');
-    // this.batteryScale = this.getFloat('batteryScale');
-    // this.batteryOffset = this.getFloat('batteryOffset');
 
     this.batteryFillRate = this.getFloat('batteryFillRate');
 
@@ -73,6 +73,14 @@ define([], function() {
 
   AppData.getSetting = function (id) {
     return $(this.configXML).find('setting[id=' + id + ']').attr('value');
+  };
+
+  AppData.getActiveLanguages = function () {
+    var langs = [];
+    $(this.configXML).find('language').each((i, el)=>{
+      langs.push({key:$(el).attr("key"), label:$(el).attr("label"), order:$(el).attr("order")});
+    })
+    return langs ;
   };
 
   AppData.setCurrentState = function (stateId) {

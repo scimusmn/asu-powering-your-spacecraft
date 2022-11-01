@@ -6,13 +6,20 @@ define(
     Language.translationXML = {};
     Language.currentLanguage = '';
 
+    console.log("test");
+    console.log("---", AppData.activeLanguages);
+
     //Language Keys
     Language.ENGLISH = 'en';
     Language.SPANISH = AppData.secondaryLanguage;
   
     // Hack to wait for app start      
     setTimeout(function () {
-      Language.SPANISH = AppData.secondaryLanguage;
+      console.log("Active Languages INIT");
+      console.log(AppData.activeLanguages);
+      console.log("Default language: " + AppData.activeLanguages[0]);
+      Language.setLanguage(AppData.activeLanguages[0].key);
+      // Language.SPANISH = AppData.secondaryLanguage;
     }, 5500);
 
     function Language() {
@@ -23,9 +30,6 @@ define(
     Language.setupTranslations = function(xml) {
 
       Language.translationXML = xml;
-
-      //default to english
-      Language.setLanguage(Language.ENGLISH);
 
     };
 
