@@ -6,16 +6,11 @@ define(
     Language.translationXML = {};
     Language.currentLanguage = '';
 
-    //Language Keys
-    Language.ENGLISH = 'en';
-    Language.SPANISH = AppData.secondaryLanguage;
-  
     // Hack to wait for app start      
     setTimeout(function () {
       console.log(AppData.activeLanguages);
       // Set to default (first) language
       Language.setLanguageByOrder(1);
-      // Language.SPANISH = AppData.secondaryLanguage;
     }, 5500);
 
     function Language() {
@@ -24,18 +19,13 @@ define(
 
     /* setupTranslations() | Accepts xml to be searched. */
     Language.setupTranslations = function(xml) {
-
       Language.translationXML = xml;
-
     };
 
     /* setLanguageByOrder() */
     Language.setLanguageByOrder = function(orderNum) {
-      console.log("!---> setLanguageByOrder", orderNum);
 
       const languageKey = AppData.activeLanguages.find(language => parseInt(language.order) === orderNum).key;
-
-      console.log("languageKey: " + languageKey);
 
       this.setLanguage(languageKey)
 
@@ -53,24 +43,6 @@ define(
 
       });
 
-    };
-
-    /**
-     Figure out the differences between these two. A physical wire might be crossed
-     */
-    Language.convertState = function(state) {
-      var langState;
-      if (AppData.invertedLanguageSwitches) {
-        var langState = 1;
-      } else {
-        langState = 0;
-      }
-
-      if (state == langState) {
-        Language.setLanguage(Language.ENGLISH);
-      } else {
-        Language.setLanguage(Language.SPANISH);
-      }
     };
 
     Language.refreshTranslation = function(translateElement) {

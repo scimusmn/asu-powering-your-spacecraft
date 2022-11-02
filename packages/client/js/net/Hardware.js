@@ -31,7 +31,7 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
   }
 
   /* "Switch" is the software representation of the hardware rotary and toggle
-  * switches that control difficulty and language. The constructor takes one
+  * switches that control difficulty. The constructor takes one
   * argument; the pin to which the hardware switch is connected.
   */
   function Switch() {
@@ -45,6 +45,22 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
       // HARD = 1;
   
       _this.state = (val === 'hard') ? 1 : 0;
+      if (_this.onchange) _this.onchange();
+    }
+
+  }
+
+  /* "IntDial" is the software representation of the hardware dial
+  * that controls language. The int argument is the list order of the active languages in settings
+  */
+  function IntDial() {
+    var _this = this;
+    _this.state = 0;
+    _this.onchange = null;
+
+    _this.setState = function(val) {
+  
+      _this.state = parseInt(val);
       if (_this.onchange) _this.onchange();
     }
 
@@ -86,7 +102,7 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
   // Handle messages coming from websocket connection
   hardware.onData = function(evt) {
     const { data } = evt;
-    // console.log('hardware.onData', data);
+    console.log('hardware.onData', data);
 
     let [message, value] = data.split(':');
     message = message.substring(1);
@@ -117,6 +133,9 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
         break;
       case 'level':
         hardware.difficulty.setState(value);
+        break;
+      case 'language':
+        hardware.language.setState(value);
         break;
       case 'arduino-ready':
         console.log('Arduino is ready...');
@@ -194,6 +213,7 @@ define(['net/AppData', 'net/webSockets'],function(AppData, wsClient) {
     hardware.heat = new Device();
     hardware.lights = new Device();
     hardware.difficulty = new Switch();
+    hardware.language = new IntDial();
 
     //if there is an init callback, call it.
     if (hardware.initCB) hardware.initCB();

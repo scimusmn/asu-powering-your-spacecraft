@@ -61,6 +61,10 @@ define(
           ControlManager.setDifficulty(this.state)
         };
 
+        hardware.language.onchange = function() {
+          Language.setLanguageByOrder(this.state);
+        };
+
       });
 
       // After linking hardware, request initial states from 

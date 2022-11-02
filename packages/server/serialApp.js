@@ -30,6 +30,21 @@ wss.on('connection', function(ws) {
 
 });
 
+// Uncomment this section as an example to locally
+// simulate receiving Arduino messages 
+
+/* const simulateRandomArduinoMessages = () => {
+  setInterval(()=>{
+    const randomLang = Math.ceil(Math.random() * 3);
+    console.log("Simulating language change:", randomLang);
+    const sendMsg = `{language:${randomLang} }`;
+    if (webSock) webSock.send(sendMsg);
+  }, 3000);
+}
+
+console.log("Start simulating");
+simulateRandomArduinoMessages(); */
+
 var SerialPort = require('serialport');
 const Readline = SerialPort.parsers.Readline;
 const parser = new Readline();
