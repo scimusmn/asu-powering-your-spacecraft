@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "setup": "run-p setup:*",
+    "setupwn": "run-p setupwn:*",
+    "setupwn:client": "cd packages/client/data/ && copy settings.default.xml settings.xml",
+    "setupwn:server": "cd packages/server/ && yarn",
     "setup:client": "cd packages/client/data/ && cp settings.default.xml settings.xml",
     "setup:server": "cd packages/server/ && yarn",
     "start": "run-p start:server start:client",
