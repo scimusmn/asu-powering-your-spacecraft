@@ -13,5 +13,6 @@ TODO Documentation
 
 TODO Dev
 -- Add active languages to settings file
--- Abstract language selectin to l1, l2, l3... instead of SPANISH/ENGLISH
+-- Abstract language selection to l1, l2, l3... instead of SPANISH/ENGLISH
 -- Inject language label into DOM
+-- Wire up language Arduino communication message
