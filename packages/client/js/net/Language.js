@@ -6,19 +6,15 @@ define(
     Language.translationXML = {};
     Language.currentLanguage = '';
 
-    console.log("test");
-    console.log("---", AppData.activeLanguages);
-
     //Language Keys
     Language.ENGLISH = 'en';
     Language.SPANISH = AppData.secondaryLanguage;
   
     // Hack to wait for app start      
     setTimeout(function () {
-      console.log("Active Languages INIT");
       console.log(AppData.activeLanguages);
-      console.log("Default language: " + AppData.activeLanguages[0]);
-      Language.setLanguage(AppData.activeLanguages[0].key);
+      // Set to default (first) language
+      Language.setLanguageByOrder(1);
       // Language.SPANISH = AppData.secondaryLanguage;
     }, 5500);
 
@@ -30,6 +26,18 @@ define(
     Language.setupTranslations = function(xml) {
 
       Language.translationXML = xml;
+
+    };
+
+    /* setLanguageByOrder() */
+    Language.setLanguageByOrder = function(orderNum) {
+      console.log("!---> setLanguageByOrder", orderNum);
+
+      const languageKey = AppData.activeLanguages.find(language => parseInt(language.order) === orderNum).key;
+
+      console.log("languageKey: " + languageKey);
+
+      this.setLanguage(languageKey)
 
     };
 

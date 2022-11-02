@@ -15,18 +15,18 @@ define(
       var backdropVid = $('#backdrop_vid');
 
       // Language controls
-      jwerty.key('1', function() { Language.setLanguage(Language.ENGLISH); });
-      jwerty.key('2', function() { Language.setLanguage(Language.SPANISH); });
+      jwerty.key('1', function() { Language.setLanguageByOrder(1); });
+      jwerty.key('2', function() { Language.setLanguageByOrder(2); });
+      jwerty.key('3', function() { Language.setLanguageByOrder(3); });
+      jwerty.key('4', function() { Language.setLanguageByOrder(4); });
 
       // Difficulty controls
-      jwerty.key('3', function() { ControlManager.setDifficulty(AppData.DIFFICULTY_EASY); });
-      jwerty.key('4', function() { ControlManager.setDifficulty(AppData.DIFFICULTY_HARD); });
+      jwerty.key('5', function() { ControlManager.setDifficulty(AppData.DIFFICULTY_EASY); });
+      jwerty.key('6', function() { ControlManager.setDifficulty(AppData.DIFFICULTY_HARD); });
 
       // Background fade
       // This wasn't used in the final version
       backdropVid.css('opacity', 0);//temp
-      jwerty.key('4', function() { $('#backdrop_vid').show().fadeTo('slow', 0.0)});
-      jwerty.key('5', function() { $('#backdrop_vid').show().fadeTo('slow', 0.6)});
 
       jwerty.key('6', function() {
         backdropVid.insertBefore('#orbit_display');
