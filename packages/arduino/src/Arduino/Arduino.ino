@@ -13,6 +13,7 @@
 
 // Pin assignments
 const int level_pin = 10;
+const int language_pin = 11;
 
 const int oxygen_solar_pin = 12;
 const int oxygen_battery_pin = 13;
@@ -41,6 +42,7 @@ const int interior_pin = 20;
 const int sun_pwm_pin = 2;
 
 bool is_hard = 0;
+bool language = 0;
 
 //part of set up for serial communication with React
 SerialController serialController;
@@ -61,6 +63,7 @@ SerialSelector Selectors[] = {
 void setup()
 {
     pinMode(level_pin, INPUT_PULLUP);
+    pinMode(language_pin, INPUT_PULLUP);
 
     // Ensure Serial Port is open and ready to communicate
     serialController.setup(baudrate, &onParse);
@@ -74,6 +77,7 @@ void loop()
         Selectors[i].update();
     }
     updateLevel(); //check and send update to level selector
+    updateLanguage(); //check and send update to language selector
     delay(20);     // slow down loop a little to minimize selector noise.
     serialController.update();
     sun.update();
@@ -92,6 +96,22 @@ void updateLevel() //check and send update to level selector
             serialController.sendMessage("level", "easy");
     }
 }
+
+void updateLanguage() //check and send update to language selector
+{
+    if (language != digitalRead(language_pin)) //the state has changed since last update
+    {
+        language = digitalRead(language_pin); // update the state.
+
+        //send the new state of the selector.
+        if (language)
+            serialController.sendMessage("language", "1");
+        if (!language)
+            serialController.sendMessage("language", "2");
+    }
+}
+
+
 
 void simSolarAvailability(int avail)
 {
