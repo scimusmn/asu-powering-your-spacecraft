@@ -12,34 +12,34 @@
 #include "Ramp.h"
 
 // Pin assignments
-const int level_pin = 10;
-const int language_pin = 11;
+const int level_pin = 3;
+const int language_pin = 2;
 
-const int oxygen_solar_pin = 12;
-const int oxygen_battery_pin = 13;
-const int oxygen_pin = 9;
+const int oxygen_solar_pin = 4;
+const int oxygen_battery_pin = 5;
+const int oxygen_pin = 24;
 
-const int fan_solar_pin = 44;
-const int fan_battery_pin = 42;
-const int fan_pin = 8;
+const int fan_solar_pin = 6;
+const int fan_battery_pin = 7;
+const int fan_pin = 23;
 
-const int grow_solar_pin = 40;
-const int grow_battery_pin = 38;
-const int grow_pin = 7;
+const int grow_solar_pin = 8;
+const int grow_battery_pin = 9;
+const int grow_pin = 22;
 
-const int communication_solar_pin = 36;
-const int communication_battery_pin = 34;
+const int communication_solar_pin = 10;
+const int communication_battery_pin = 11;
 const int communication_pin = 18; // No connection. sound will be played from PC
 
-const int cook_solar_pin = 32;
-const int cook_battery_pin = 30;
-const int cook_pin = 19;
+const int cook_solar_pin = 13;
+const int cook_battery_pin = 14;
+const int cook_pin = 21;
 
-const int interior_solar_pin = 22;
-const int interior_battery_pin = 21;
+const int interior_solar_pin = 15;
+const int interior_battery_pin = 16;
 const int interior_pin = 20;
 
-const int sun_pwm_pin = 2;
+const int sun_pwm_pin = 12;
 
 bool is_hard = 0;
 bool language = 0;
@@ -91,9 +91,9 @@ void updateLevel() //check and send update to level selector
 
         //send the new state of the selector.
         if (is_hard)
-            serialController.sendMessage("level", "hard");
-        if (!is_hard)
             serialController.sendMessage("level", "easy");
+        if (!is_hard)
+            serialController.sendMessage("level", "hard");
     }
 }
 
