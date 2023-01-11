@@ -23,13 +23,13 @@
 
             <text id="available">
                 <en>Available</en>
-                <es>DISPONIBLE</es>
+                <es><![CDATA[<span class="margin">DISPONIBLE<span>]]></es>
                 <fr><![CDATA[Disponible]]></fr>
             </text>
 
             <text id="unavailable">
                 <en>Not available</en>
-                <es>No está disponible</es>
+                <es><![CDATA[<span class="margin">No está disponible<span>]]></es>
                 <fr><![CDATA[Indisponible]]></fr>
             </text>
 
@@ -157,7 +157,7 @@
 
             <text id="popup_dead_header">
                 <en><![CDATA[Life support failure!]]></en>
-                <es><![CDATA[<span class="smaller">¡Hay una falla en el sistema de soporte vital!<span>]]></es>
+                <es><![CDATA[<span class="es-warning">¡Hay una falla en el sistema de soporte vital!<span>]]></es>
                 <fr><![CDATA[Échec du système de survie&#8202;!]]></fr>
             </text>
 

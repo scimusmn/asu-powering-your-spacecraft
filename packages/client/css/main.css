@@ -156,6 +156,14 @@ p {
     line-height: 80%;
 }
 
+.margin {
+    margin-left: 15px;
+}
+
+.es-warning{
+    font-size: 50%;
+}
+
 .warning-red{
     color:#cb242c !important;
 }
